@@ -8,3 +8,5 @@ console.log(false);
 console.log(10);
 
 console.log('I\'m 29 years old!');
+console.log(29);
+
