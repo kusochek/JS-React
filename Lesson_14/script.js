@@ -10,55 +10,55 @@
 // 4. makeFlightData + getCrosswindApprove
 // 5. Airlainer => getPasApproval, makeFlightData
 
-// const CROSSWIND = 30;
+const CROSSWIND = 30;
 
-// class Plane {
-//   constructor(name, maxCrosswind) {
-//     this.name = name;
-//     this.maxCrosswind = maxCrosswind;
-//   }
+class Plane {
+  constructor(name, maxCrosswind) {
+    this.name = name;
+    this.maxCrosswind = maxCrosswind;
+  }
 
-//   takeoff(passenger) {
-//     console.log(this.flightData(passenger));
+  takeoff(passenger) {
+    console.log(this.flightData(passenger));
     
-//     return `Takeoff for ${this.name} is ${this.flightData(passenger).every((data) => data) ? '' : 'not'} approved`;
-//   }
+    return `Takeoff for ${this.name} is ${this.flightData(passenger).every((data) => data) ? '' : 'not'} approved`;
+  }
 
-//   flightData() {
-//     return [this.checkCrosswind()];
-//   }
+  flightData() {
+    return [this.checkCrosswind()];
+  }
 
-//   checkCrosswind() {
-//     return this.maxCrosswind >= CROSSWIND;
-//   }
-// }
+  checkCrosswind() {
+    return this.maxCrosswind >= CROSSWIND;
+  }
+}
 
-// class Airlainer extends Plane {
-//   constructor(name, maxCrosswind, minPassenger) {
-//     super(name, maxCrosswind);
-//     this.minPassenger = minPassenger;
-//   }
+class Airlainer extends Plane {
+  constructor(name, maxCrosswind, minPassenger) {
+    super(name, maxCrosswind);
+    this.minPassenger = minPassenger;
+  }
 
-//   flightData(passenger) {
-//     return [...super.flightData(), this.checkValueOfPassengers(passenger)];
-//   }
+  flightData(passenger) {
+    return [...super.flightData(), this.checkValueOfPassengers(passenger)];
+  }
 
-//   checkValueOfPassengers(passenger) {
-//     return this.minPassenger < passenger;
-//   }
-// }
+  checkValueOfPassengers(passenger) {
+    return this.minPassenger < passenger;
+  }
+}
 
-// class Aerobatics extends Plane {
-//   constructor(name, maxCrosswind) {
-//     super(name, maxCrosswind);
-//   }
-// }
+class Aerobatics extends Plane {
+  constructor(name, maxCrosswind) {
+    super(name, maxCrosswind);
+  }
+}
 
-// const Boeing747 = new Airlainer('Boeing 747', 40, 100);
-// const Extra330 = new Aerobatics('Extra 330', 15);
+const Boeing747 = new Airlainer('Boeing 747', 40, 100);
+const Extra330 = new Aerobatics('Extra 330', 15);
 
-// console.log(Boeing747.takeoff(90));
-// console.log(Extra330.takeoff());
+console.log(Boeing747.takeoff(90));
+console.log(Extra330.takeoff());
 
 
 
