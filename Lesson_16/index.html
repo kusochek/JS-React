@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			margin: 0;
+			height: 100vh;
+			width: 100vw;
+		}
+
+    .wrapp {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    div.block {
+      display: block;
+    }
+
+		.grid-wrapp {
+			height: 100%;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: repeat(3, 1fr);
+		}
+
+		.grid {
+			border: 1px solid blue;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.inner-div {
+			width: 70px;
+			height: 70px;
+      background-color: red;
+		}
+	</style>
+	<title>Lesson 16</title>
+</head>
+
+<body>
+  <div class="wrapp"></div>
+  <input type="text" class="input">
+  <!-- <div class="wrapp">Hello world!</div>
+  <div class="wrapp">Hello world!</div>
+  <div class="wrapp">Hello world!</div>
+  <div class="wrapp">Hello world!</div>
+  <div class="wrapp">Hello world!</div>
+  <div class="wrapp">Hello world!</div> -->
+	<script src="script.js"></script>
+</body>
+
+</html>
