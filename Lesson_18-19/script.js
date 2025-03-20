@@ -49,3 +49,30 @@
 // getItem(key)
 // removeItem(key)
 // JSON.parse/JSON.stringify
+
+// localStorage.setItem('firstName', 'Oleksandra');
+// localStorage.setItem('lastName', 'Dontsova');
+// localStorage.setItem('age', 29);
+// localStorage.setItem('haveCat', true);
+// localStorage.setItem('firstName', 'Sasha');
+
+// localStorage.removeItem('firstName')
+
+
+// console.log(localStorage.getItem('firstName'));
+
+// const user = {
+//   firstName: 'Oleh',
+//   lastName: 'Borohovych',
+//   age: 30,
+// };
+
+// localStorage.setItem('user', JSON.stringify(user));
+
+
+// const user = localStorage.getItem('user');
+// const parsedUser = JSON.parse(user);
+// console.log(parsedUser);
+
+
+

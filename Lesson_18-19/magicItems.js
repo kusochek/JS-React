@@ -2609,24 +2609,41 @@ const magicItems = [
   }
 ];
 
+const MAGIC_ITEMS_KEY = 'privetMagicItems';
+
 const main = document.querySelector('.main');
 const search = document.querySelector('.search');
 const createNew = document.querySelector('.create-new');
 const modal = document.querySelector('.modal-wrapper');
 const save = document.querySelector('.save');
 
-createNew.addEventListener('click', () => {
+function openModal() {
   modal.style.display = 'flex';
-});
+}
 
-save.addEventListener('click', () => {
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function saveDataToLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getPreviosSavedMagicItems() {
+  const createdMagicItems = localStorage.getItem(MAGIC_ITEMS_KEY);
+  const parsedMagicItems = JSON.parse(createdMagicItems);
+
+  return parsedMagicItems ?? [];
+}
+
+function createDataWithNewItem() {
   const name = document.querySelector('#name').value;
   const description = document.querySelector('#description').value;
   const type = document.querySelector('#type').value;
   const quality = document.querySelector('#quality').value;
 
   const newCard = {
-    id: 1,
+    id: Date.now().toString(36) + Math.random().toString(36),
     name,
     description,
     type,
@@ -2634,10 +2651,20 @@ save.addEventListener('click', () => {
     source: 'Custom Item',
   };
 
-  console.log(newCard);
-});
+  return newCard;
+}
 
-function renderCard(item) {
+function addNewItemToMagicItemsList(newMagicItem) {
+  magicItems.unshift(newMagicItem);
+}
+
+function renderNewMagicItem(newCard) {
+  closeModal();
+  const card = createCard(newCard);
+  renderCard(card, true);
+};
+
+function createCard(item) {
   const card = document.createElement('div');
   const mainInfo =  document.createElement('div');
   const h3 = document.createElement('h3');
@@ -2664,20 +2691,55 @@ function renderCard(item) {
   mainInfo.append(h3, description);
   additionalInfo.append(quality, qualityText, type, typeText);
   card.append(mainInfo, additionalInfo);
-  main.append(card);
+  
+  return card;
 };
 
-search.addEventListener('input', () => {
-  main.innerHTML = '';
+function renderCard(card, top = false) {
+  if (top) {
+    main.prepend(card);
+  } else {
+    main.append(card);
+  }
+}
+
+function filterMagicItems() {
   magicItems
     .filter((item) => {
       return item.name.toLowerCase().includes(search.value.toLowerCase());
     })
     .forEach((item) => {
-      renderCard(item);
+      const card = createCard(item);
+      renderCard(card);
     });
+}
+
+function resetMagicItems() {
+  main.innerHTML = '';
+}
+
+function addMagicItemsFromLocalStorage() {
+  const magicItemsFromLocalStorage = getPreviosSavedMagicItems();
+  magicItems.unshift(...magicItemsFromLocalStorage);
+}
+
+search.addEventListener('input', () => {
+  resetMagicItems();
+  filterMagicItems();
+});
+createNew.addEventListener('click', openModal);
+save.addEventListener('click', () => {
+  const newCard = createDataWithNewItem();
+
+  renderNewMagicItem(newCard);
+  addNewItemToMagicItemsList(newCard);
+
+  saveDataToLocalStorage(MAGIC_ITEMS_KEY, [...getPreviosSavedMagicItems(), newCard]);
 });
 
+addMagicItemsFromLocalStorage();
+
 magicItems.forEach((item) => {
-  renderCard(item);
+  const card = createCard(item);
+  renderCard(card);
 });
