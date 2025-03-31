@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    .wrapp {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+    }
+
+    .left-side {
+      width: 65%;
+      background-color: #fff;
+      overflow: hidden;
+      padding: 50px 100px;
+    }
+
+    .right-side {
+      width: 35%;
+      background-color: #f5f5f5;
+      overflow: hidden;
+      padding: 50px;
+    }
+
+    .form {
+      border: 1px solid blueviolet;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .form>label {
+      margin-bottom: 15px;
+    }
+
+    .button {
+      width: 320px;
+      height: 60px;
+      border-radius: 10px;
+      color: white;
+      background-color: blueviolet;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    #category {
+      display: flex;
+      margin-left: 30px;
+      align-items: center;
+      height: 60px;
+      max-width: 550px;
+      overflow-x: scroll;
+      gap: 15px;
+    }
+
+    #category label {
+      display: flex;
+      align-items: center;
+    }
+
+    #category button {
+      padding: 3px 20px;
+      background-color: #fff;
+      border-radius: 6px;
+      border: 1px solid blueviolet;
+      color: black;
+      cursor: pointer;
+    }
+
+    input[type="text"] {
+      width: 320px;
+      height: 40px;
+      border-radius: 10px;
+      color: blueviolet;
+      border: 1px solid blueviolet;
+      background-color: #fff;
+      font-size: 18px;
+      padding: 5px 10px;
+      margin-bottom: 30px;
+    }
+
+    .msi {
+      margin-bottom: 70px;
+    }
+
+    .joke {
+      background-color: #f5f5f5;
+      width: 100%;
+      padding: 40px;
+      display: flex;
+      gap: 30px;
+      border-radius: 10px;
+      align-items: flex-start;
+    }
+
+    .joke img {
+      width: 50px;
+      margin-top: 45px;
+    }
+
+    .fav {
+      text-align: end;
+      font-size: 30px;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .joke-info {
+      width: 100%;
+    }
+
+    .id-info {
+      font-size: 10px;
+      color: #a9a9a9;
+    }
+
+    .description {
+      font-size: 18px;
+    }
+
+    .date {
+      font-size: 10px;
+      color: #a9a9a9; 
+    }
+    
+    .joke-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .category-info {
+      padding: 5px 15px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      background-color: #fff;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .fav-joke-wrapp {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: scroll;
+      max-height: 100%;
+    }
+
+    .fav-joke-wrapp .joke {
+      background-color: #fff;
+    }
+
+    .joke-wrapp {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: scroll;
+      max-height: 40%;
+    }
+  </style>
+  <title>JOKES</title>
+</head>
+
+<body>
+  <div class="wrapp">
+    <div class="left-side">
+      <h3 class="msi">MSI 2020</h3>
+      <h2>Hey!</h2>
+      <h3>Let's try to find a joke for you!</h3>
+      <form class="form">
+        <label>
+          <input type="radio" name="jokeType" value="random" checked>
+          Random
+        </label>
+        <label>
+          <input type="radio" name="jokeType" value="category">
+          Category
+          <div id="category"></div>
+        </label>
+        <label>
+          <input type="radio" name="jokeType" value="search">
+          Search
+        </label>
+        <input type="text" id="searchText" placeholder="Banana">
+        <button class="button" type="button">Find Joke</button>
+      </form>
+      <div class="joke-wrapp">
+      </div>
+    </div>
+    <div class="right-side">
+      <h3>FAVOURITE</h3>
+      <div class="fav-joke-wrapp">
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

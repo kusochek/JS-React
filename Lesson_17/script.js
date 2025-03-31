@@ -36,11 +36,11 @@
 // ondblclick
 // oncontextmenu
 
-const block = document.querySelector('.block');
+// const block = document.querySelector('.block');
 
-block.onclick = (event) => {
-  console.log(event);
-};
+// block.onclick = (event) => {
+//   console.log(event);
+// };
 
 // block.onmousedown = () => {
 //   console.log('onmousedown');
@@ -145,3 +145,6 @@ block.onclick = (event) => {
 
 //   console.log(firstName, lastName, age);
 // });
+
+const shouldHeartGoOn = true;
+shouldHeartGoOn = false; // ❌ Error – змінити не можна!
