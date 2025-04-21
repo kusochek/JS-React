@@ -1,26 +1,44 @@
-import { trips } from './constants';
-import {
-  Button, Card, CardsGrid, Content, Description, Image, Price, Title,
-} from './styled';
+import { useEffect, useState } from 'react';
+import { trips as apiTrips } from '../../api/trips/trips';
+import Card from '../../components/Card/Card';
+import { CardsGrid } from './styled';
 
 export default function Landing() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [trips, setTrips] = useState([]);
+
+  const fetchTrips = async () => {
+    setLoading(true);
+
+    try {
+      const data = await apiTrips.get();
+      setTrips(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTrips();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) {
+    return (
+      <div>
+        Error:
+        {error}
+      </div>
+    );
+  }
+
   return (
     <CardsGrid>
       {trips.map((trip) => (
-        <Card key={trip.id}>
-          <Image src={trip.image} alt={`${trip.city}, ${trip.country}`} />
-          <Content>
-            <Title>
-              {trip.city}
-              ,
-              {' '}
-              {trip.country}
-            </Title>
-            <Description>{trip.description}</Description>
-            <Price>{trip.price}</Price>
-            <Button>Details</Button>
-          </Content>
-        </Card>
+        <Card key={trip.id} trip={trip} />
       ))}
     </CardsGrid>
   );
