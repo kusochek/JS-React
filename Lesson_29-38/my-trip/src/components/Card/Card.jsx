@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   Button, Content, Description, Image, Price, StyledCard, Title,
 } from './styled';
@@ -6,6 +7,12 @@ import {
 // const { currentTrip: trip, count, counter } = props;
 
 export default function Card({ trip }) {
+  const navigate = useNavigate();
+
+  const redirectToTripDetails = () => {
+    navigate(`/trip/${trip.id}`);
+  };
+
   return (
     <StyledCard>
       <Image src={trip.image} alt={`${trip.city}, ${trip.country}`} />
@@ -21,7 +28,9 @@ export default function Card({ trip }) {
           {trip.price}
           $
         </Price>
-        <Button>Details</Button>
+        {/* <Link to="/trip"> */}
+        <Button onClick={redirectToTripDetails}>Details</Button>
+        {/* </Link> */}
       </Content>
     </StyledCard>
   );

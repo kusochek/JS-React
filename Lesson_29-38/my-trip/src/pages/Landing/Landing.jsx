@@ -1,29 +1,17 @@
-import { useEffect, useState } from 'react';
-import { trips as apiTrips } from '../../api/trips/trips';
+import { useMemo } from 'react';
 import Card from '../../components/Card/Card';
 import { CardsGrid } from './styled';
+import useFetchTrips from './hooks/useFetchTrips';
 
-export default function Landing() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [trips, setTrips] = useState([]);
+export default function Landing({ searchValue }) {
+  const { loading, error, data: trips } = useFetchTrips();
 
-  const fetchTrips = async () => {
-    setLoading(true);
+  const filteredTrips = useMemo(() => trips.filter((trip) => {
+    const { country, city } = trip;
+    const value = searchValue.toLowerCase();
 
-    try {
-      const data = await apiTrips.get();
-      setTrips(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchTrips();
-  }, []);
+    return country.toLowerCase().includes(value) || city.toLowerCase().includes(value);
+  }), [searchValue, trips]);
 
   if (loading) return <div>Loading...</div>;
   if (error) {
@@ -37,7 +25,7 @@ export default function Landing() {
 
   return (
     <CardsGrid>
-      {trips.map((trip) => (
+      {filteredTrips.map((trip) => (
         <Card key={trip.id} trip={trip} />
       ))}
     </CardsGrid>
