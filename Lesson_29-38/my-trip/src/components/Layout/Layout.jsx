@@ -14,7 +14,7 @@ export default function Layout() {
       <Header />
       <StyledMain>
         <Sidebar onSearchChange={setSearchValue} />
-        <Outlet />
+        <Outlet searchValue={searchValue} />
       </StyledMain>
       <Footer />
     </StyledLayoutWrapper>

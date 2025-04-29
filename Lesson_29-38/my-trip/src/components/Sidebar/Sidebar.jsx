@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { StyledInput, StyledSidebar } from './styled';
 
 export default function Sidebar({ onSearchChange }) {
@@ -13,6 +14,7 @@ export default function Sidebar({ onSearchChange }) {
         placeholder="Search"
         onChange={handleSearchChange}
       />
+      <Link to="/trip/create">Create Trip</Link>
     </StyledSidebar>
   );
 }
