@@ -47,7 +47,9 @@ export default function TripDetails() {
           </Duration>
           <System>
             ✈️ Travel:
-            {trip.system}
+            {' '}
+            {' '}
+            {trip?.system?.join(', ')}
           </System>
           <Price>
             {trip.price}
