@@ -3,12 +3,16 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import dayjs from 'dayjs';
+import { useParams } from 'react-router-dom';
 import TripForm from '../../components/TripForm/TripForm';
-import useFetchTrip from '../TripDetails/hooks/useFetchTrip';
 import { InitialValues } from '../CreateTrip/constants';
+import useUpdateTrip from '../../state/useUpdateTrip';
+import useFetchTrip from '../../state/useFetchTrip';
 
 export default function UpdateTrip() {
-  const { data: trip, loading, error } = useFetchTrip();
+  const params = useParams();
+  const { data: trip, loading: tripLoading, error } = useFetchTrip();
+  const { loading, updateTrip } = useUpdateTrip(params.id);
   const [open, setOpen] = useState(false);
 
   const onFinish = () => {
@@ -22,13 +26,11 @@ export default function UpdateTrip() {
     arrivalDateTime: dayjs(trip.arrivalDateTime) || dayjs(),
   };
 
-  // eslint-disable-next-line no-unused-vars
-  const handleUpdateTrip = () => {
-    console.log('UPDATE');
-    onFinish();
+  const handleUpdateTrip = (values) => {
+    updateTrip(values, onFinish);
   };
 
-  if (loading || !trip) return <h2>Loading...</h2>;
+  if (tripLoading || !trip) return <h2>Loading...</h2>;
   if (error) {
     return (
       <div>
@@ -39,11 +41,12 @@ export default function UpdateTrip() {
 
   return (
     <Grid display="flex" alignItems="center" flexDirection="column" width="100%" p={3}>
-      <Typography variant="h3" mb={2}>Create Trip</Typography>
-      <Typography variant="body2" mb={4}>Fill free to create a new trip!</Typography>
+      <Typography variant="h3" mb={2}>Update Trip</Typography>
+      <Typography variant="body2" mb={4}>Fill free to update the trip!</Typography>
       <TripForm
         initialValues={initialValue || InitialValues}
         loading={loading}
+        buttonText="Update Trip"
         handleSubmit={handleUpdateTrip}
       />
       <Snackbar

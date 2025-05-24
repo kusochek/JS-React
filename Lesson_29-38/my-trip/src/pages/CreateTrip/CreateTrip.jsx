@@ -3,8 +3,8 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { InitialValues } from './constants';
-import useCreateTrip from './hooks/useCreateTrip';
 import TripForm from '../../components/TripForm/TripForm';
+import useCreateTrip from '../../state/useCreateTrip';
 
 export default function CreateTrip() {
   const { loading, createTrip } = useCreateTrip();
@@ -30,6 +30,7 @@ export default function CreateTrip() {
       <TripForm
         initialValues={InitialValues}
         loading={loading}
+        buttonText="Create New Trip"
         handleSubmit={handleCreateTripSubmit}
       />
       <Snackbar

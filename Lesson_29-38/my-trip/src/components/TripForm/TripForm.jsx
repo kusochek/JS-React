@@ -10,9 +10,12 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import {
   Field, Form, Formik,
 } from 'formik';
+import dayjs from 'dayjs';
 import { tripValidationSchema, TypeOptions } from './constants';
 
-export default function TripForm({ initialValues, loading, handleSubmit }) {
+export default function TripForm({
+  initialValues, loading, handleSubmit, buttonText,
+}) {
   return (
     <Formik
       initialValues={initialValues}
@@ -74,14 +77,14 @@ export default function TripForm({ initialValues, loading, handleSubmit }) {
               <Field name="arrivalDateTime">
                 {({ field }) => (
                   <DateTimePicker
-                    onChange={(value) => setFieldValue('arrivalDateTime', value?.toDate?.() || new Date(value))}
+                    onChange={(value) => setFieldValue('arrivalDateTime', dayjs(value) || new Date(value))}
                     label="Start trip date"
                     value={field.value}
                   />
                 )}
               </Field>
 
-              <Button variant="contained" color="primary" type="submit" loading={loading}>Create New Trip</Button>
+              <Button variant="contained" color="primary" type="submit" loading={loading}>{buttonText}</Button>
             </Grid>
             <Grid size={6} display="flex" flexDirection="column" gap={2} width="100%">
               <Field name="city">
@@ -145,7 +148,7 @@ export default function TripForm({ initialValues, loading, handleSubmit }) {
                 {({ field }) => (
                   <DateTimePicker
                     value={field.value}
-                    onChange={(value) => setFieldValue('departureDateTime', value?.toDate?.() || new Date(value))}
+                    onChange={(value) => setFieldValue('departureDateTime', dayjs(value) || new Date(value))}
                     label="End trip date"
                   />
                 )}

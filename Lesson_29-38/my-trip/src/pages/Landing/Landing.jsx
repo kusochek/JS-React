@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import Card from '../../components/Card/Card';
 import { CardsGrid } from './styled';
-import useFetchTrips from './hooks/useFetchTrips';
+import useFetchTrips from '../../state/useFetchTrips';
 
 export default function Landing({ searchValue }) {
   const { loading, error, data: trips } = useFetchTrips();

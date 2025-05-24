@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import useFetchTrip from './hooks/useFetchTrip';
 import {
   BackButton,
   BuyButton,
@@ -14,6 +13,7 @@ import {
   System,
   Title,
 } from './styled';
+import useFetchTrip from '../../state/useFetchTrip';
 
 export default function TripDetails() {
   const { data: trip, loading, error } = useFetchTrip();
