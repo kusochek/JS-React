@@ -1,4 +1,5 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   extends: [
     'react-app',
     'airbnb',
@@ -6,12 +7,12 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:react/recommended',
   ],
-  plugins: ['react', 'jsx-a11y', 'import'],
+  plugins: ['react', 'jsx-a11y', 'import', '@typescript-eslint'],
   rules: {
     'no-unused-vars': 'error',
     'no-undef': 'warn',
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/prop-types': 'off',
     'no-console': 'warn',
     'react/jsx-no-bind': 'off',

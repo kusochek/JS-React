@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box, TextField, Grid,
   FormControl,
@@ -12,6 +13,17 @@ import {
 } from 'formik';
 import dayjs from 'dayjs';
 import { tripValidationSchema, TypeOptions } from './constants';
+
+// type InitialValues = {
+//   country: string;
+// }
+
+// type TripFormProps = {
+//   initialValues: InitialValues;
+//   loading: boolean;
+//   buttonText: string;
+//   handleSubmit: () => void;
+// };
 
 export default function TripForm({
   initialValues, loading, handleSubmit, buttonText,
